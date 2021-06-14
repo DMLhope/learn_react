@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="../quote/react.development.js"></script>
+    <script src="../quote/react-dom.development.js"></script>
+    <script src="../quote/babel.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <dev id="test"></dev>
+    <script type="text/babel">
+        //设置虚拟DOM 
+        const VDOM=(
+        <div>
+            <h1>前端js框架列表</h1>
+            <ul>
+                <li>vue</li>
+                <li>react</li>
+                <li>angula</li>
+            </ul>
+        </div>
+        )
+        //渲染dom到页面
+        ReactDOM.render(VDOM,document.getElementById('test'));
+
+    </script>
+
+</body>
+
+</html>

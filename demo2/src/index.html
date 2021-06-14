@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../quote/react.development.js"></script>
+    <script src="../quote/react-dom.development.js"></script>
+    <script src="../quote/babel.min.js"></script>    
+    <title>demo2</title>
+</head>
+<body>
+    <div id="test"></div>
+ 
+
+    <script type="text/babel">
+        class Weather extends React.Component{
+            // 构造器
+            constructor(props){
+                super(props);
+                this.state = {ishappy:false} //初始化状态
+
+            }
+
+            render(){
+                // console.log(this);
+                // const {ishappy}=this.state //解构赋值
+                return <h1 onClick={this.show}>今天心情{this.state.ishappy ? '开心': '不开心'}</h1>
+            }
+
+            show(){
+                console.log(this);
+            }
+        }
+        //渲染dom到页面
+        ReactDOM.render(<Weather/>,document.getElementById('test'));
+
+
+        
+        // 几种鼠标点击事件的方法
+        // const h1 = document.getElementById('h1')
+        // h1.onclick=()=>{
+        //     alert(1);
+        // }
+        // h1.addEventListener('click',()=>{
+        //     alert(1);
+        // })
+    </script>
+    
+</body>
+</html>
