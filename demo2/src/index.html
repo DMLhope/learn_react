@@ -17,17 +17,20 @@
             constructor(props){
                 super(props);
                 this.state = {ishappy:false} //初始化状态
-
+                //给实例自身追加一个同名都change方法，这个方法时根据原型上成change函数用bind生成的，这里的this没有问题
+                this.changeMood = this.changeMood.bind(this);
             }
 
             render(){
                 // console.log(this);
                 // const {ishappy}=this.state //解构赋值
-                return <h1 onClick={this.show}>今天心情{this.state.ishappy ? '开心': '不开心'}</h1>
+                return <h1 onClick={this.changeMood}>今天心情{this.state.ishappy ? '开心': '不开心'}</h1>
             }
 
-            show(){
-                console.log(this);
+            changeMood(){
+
+                console.log('@',this);
+                this.state.ishappy=true;
             }
         }
         //渲染dom到页面

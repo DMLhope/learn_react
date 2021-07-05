@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <script type="text/javascript">
+    class Dog{
+      constructor(name,age) {
+        this.name =name;
+        this.age = age;
+
+      }
+      cry(){
+          console.log(this)
+          console.log(`我的名字是：${this.name},年龄是：${this.age}`)
+      }
+    }
+    const d = new Dog('dog',1)
+    let x = d.cry
+    x()//此处属于cry的直接调用，类中所有定义的方法，浏览器在运行时，全部都加上了use strict（严格模式）
+    //严格模式可以局部开启实例
+    // function demo1(){
+    //     'use strict'
+    //     console.log(this);
+    // }
+    // function demo2(){
+    //     console.log(this);
+    // }
+    // demo1();
+    // demo2();
+  </script>
+
+</body>
+</html>
