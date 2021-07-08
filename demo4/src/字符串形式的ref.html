@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script src="../quote/react.development.js"></script>
+    <script src="../quote/react-dom.development.js"></script>
+    <script src="../quote/babel.min.js"></script>
+    <script src="../quote/prop-types.js"></script>
+    <title>字符串形式的ref</title>
+  </head>
+  <body>
+    <div id="test"></div>
+    !!!!此种字符串形式的ref，非官方推荐
+    <script type="text/babel">
+      class Show extends React.Component {
+        render() {
+          return (
+            <div>
+              <input type="text" ref="input1" />&nbsp;
+              <button onClick={this.show}>点我提示左侧数据</button>&nbsp;
+              <input type="text" ref="input2" onBlur={this.show2} placeholder="失去焦点提示数据" />&nbsp;
+            </div>
+          );
+        }
+        show = ()=>{
+          //操作dom的方式获取数据
+          // alert(document.getElementById('input1').value)
+          // console.log(this)
+          // console.log(this.refs.input1.value)
+          // const {refs:{input1:{value:a}}} = this
+          // console.log(a)
+          const {input1} = this.refs
+          console.log(input1.value)
+        }
+        show2= ()=>{
+          const {input2} = this.refs
+          console.log(input2.value)
+        }
+      }
+      //渲染dom到页面
+
+      ReactDOM.render(<Show/>, document.getElementById("test"));
+    </script>
+  </body>
+</html>

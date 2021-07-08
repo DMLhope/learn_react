@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script src="../quote/react.development.js"></script>
+    <script src="../quote/react-dom.development.js"></script>
+    <script src="../quote/babel.min.js"></script>
+    <script src="../quote/prop-types.js"></script>
+    <title>createref形式的ref</title>
+  </head>
+  <body>
+    <div id="test"></div>
+    !!! refs本身不推荐使用，对内存不友好
+    <script type="text/babel">
+    //当前节点currentNode（c）
+    //container（容器）
+    // let container = React.createRef()
+      class Show extends React.Component {
+        container = React.createRef()
+        container1 = React.createRef()
+        render() {
+          return (
+            <div>
+              <input type="text" ref={this.container} />&nbsp;
+              <button onClick={this.show}>点我提示左侧数据</button>&nbsp;
+              <input type="text" ref={this.container1} onBlur={this.show2} placeholder="失去焦点提示数据" />
+            </div>
+          );
+        }
+        show = ()=>{
+          // console.log(this.input1.value)
+          console.log(this.container.current.value)
+        }
+        show2= ()=>{
+          console.log(this.container1.current.value)
+        }
+      }
+      //渲染dom到页面
+
+      ReactDOM.render(<Show/>, document.getElementById("test"));
+    </script>
+  </body>
+</html>

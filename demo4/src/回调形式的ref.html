@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script src="../quote/react.development.js"></script>
+    <script src="../quote/react-dom.development.js"></script>
+    <script src="../quote/babel.min.js"></script>
+    <script src="../quote/prop-types.js"></script>
+    <title>回调形式的ref</title>
+  </head>
+  <body>
+    !!!也不推荐
+    <div id="test"></div>
+
+    <script type="text/babel">
+    //当前节点carrentNode（c）
+      class Show extends React.Component {
+        render() {
+          return (
+            <div>
+              <input type="text" ref={(c)=>{this.input1 = c}} />&nbsp;
+              <button onClick={this.show}>点我提示左侧数据</button>&nbsp;
+              <input type="text" ref={(c)=>{this.input2 = c }} onBlur={this.show2} placeholder="失去焦点提示数据" />
+            </div>
+          );
+        }
+        show = ()=>{
+          // console.log(this.input1.value)
+          const {input1} = this
+          alert(input1.value)
+        }
+        show2= ()=>{
+          const {input2} = this
+          alert(input2.value)
+        }
+      }
+      //渲染dom到页面
+
+      ReactDOM.render(<Show/>, document.getElementById("test"));
+    </script>
+  </body>
+</html>
