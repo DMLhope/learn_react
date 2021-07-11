@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>原生自定义事件</title>
+</head>
+<body>
+    <div id="div" style="background-color: orange;width: 200px;height: 200px;">随便的内容</div>
+
+    <script type="text/javascript">
+        const div = document.getElementById('div')
+        // 创建一个事件
+        const haha = new Event('haha')
+
+        div.addEventListener('haha',()=>{
+            console.log("点击")
+        })
+        // dispatchEvent分发事件
+        div.dispatchEvent(haha)
+    </script>
+</body>
+</html>

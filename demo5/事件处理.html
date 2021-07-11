@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script src="quote/react.development.js"></script>
+    <script src="quote/react-dom.development.js"></script>
+    <script src="quote/prop-types.js"></script>
+    <script src="quote/babel.min.js"></script>
+    <title>事件处理</title>
+    <style>
+      .container {
+        width: 400px;
+        height: 400px;
+        background-color: orange;
+      }
+      .child {
+        width: 200px;
+        height: 200px;
+        background-color: gray;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="test"></div>
+    
+
+    <script type="text/babel">
+    /*
+    1. 通过onXxx属性指定事件处理函数（注意大小写）
+        1） React 使用的是自定义（合成）事件，而不是使用的原生dom事件 ----为了更好的兼容性
+        2） React 中的事件是通过事件委托的方式处理的（委托给组件最外层的元素）----为了效率更高
+    2. 通过event.target得到发生事件的DOM元素对象
+    */
+      class Demo extends React.Component {
+        render() {
+          return (
+            <div className="container" onClick={this.test}>
+              <button onClick={this.show1} >按钮1</button>
+              <button onClick={this.show2} >按钮2 ahskdfha</button>
+              <div  onClick={this.show3} className="child">xxx</div>
+            </div>
+          );
+        }
+        show1 = ( event )=>{
+            //接到的event是react自定义的事件对象，这个event拥有和原生event同样的属性
+            event.stopPropagation() //阻止冒泡（外部元素事件被内部事件带着触发）
+            console.log('按钮1')
+        }
+        show2 = (event)=>{
+            
+            console.log('按钮2',event.target.innerText)
+        }
+        show3 = ()=>{
+            console.log('xxx')
+        }
+        test = ()=>{
+            console.log('test')
+        }
+      }
+
+      ReactDOM.render(<Demo />, document.getElementById("test"));
+    </script>
+  </body>
+</html>
