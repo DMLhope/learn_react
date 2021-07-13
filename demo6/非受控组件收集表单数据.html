@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script src="quote/react.development.js"></script>
+    <script src="quote/react-dom.development.js"></script>
+    <script src="quote/prop-types.js"></script>
+    <script src="quote/babel.min.js"></script>
+    <title>非受控组件收集表单数据</title>
+    
+  </head>
+  <body>
+    <div id="test"></div>
+    
+
+    <script type="text/babel">
+    /*
+      非受控组件： 表单中的数据，在需要的时候，“现用现取”（通过ref获得到节点，进而访问到value值）
+      受控=>state
+    */
+    class Login extends React.Component{
+      render(){
+        return (
+          //handle处理者
+          <form onSubmit={this.handleLogin}>
+            用户名：<input type="text" ref={c => this.userNameNode = c}/> <br/><br/>
+            密码：<input type="password" ref={c => this.passwordNode = c}/> <br/><br/>
+            <button>确认</button>
+          </form>
+        )
+      }
+
+      handleLogin = (event)=>{
+        event.preventDefault()//阻止默认行为
+        const {userNameNode,passwordNode} = this
+        alert(`用户名是${userNameNode.value}，密码是${passwordNode.value}`)
+      }
+    }
+
+    ReactDOM.render(<Login />, document.getElementById("test"));
+    </script>
+  </body>
+</html>
